@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"
+            integrity="sha512-P36ourTueX/PrXrD4Auc1kVLoTE7bkWrIrkaM0IG2X3Fd90LFgTRogpZzNBssay0XOXhrIgudf4wFeftdsPDiQ=="
+            crossorigin="anonymous">
+    </script>
+    <title>StudentInfo</title>
+</head>
+<body>
+    <div id="abc">Student Name :</div><br><br>
+    <button onclick="azzu()">Azhar</button><br><br>
+    <button onclick="chary()">Rajendra</button><br><br>
+    <button onclick="sri()">Srikanth</button>
+    <script>
+        const initialState={employee:''}
+
+        const emp1=()=>{
+            return {
+                type:'emp1'
+            }
+        }
+        const emp2=()=>{
+            return {
+                type:'emp2'
+            }
+        }
+        const emp3=()=>{
+            return {
+                type:'emp3'
+            }
+        }
+        
+        const store=Redux.createStore(reducer);
+
+        function reducer(State=initialState,action){
+            if(action.type==='emp1'){
+                return{...State,employee:State.employee='Azharuddin Azzu'}
+            }
+            else if(action.type==='emp2'){
+                return{...State,employee:State.employee='Chary'}
+            }
+            else if(action.type==='emp3'){
+                return{...State,employee:State.employee='Srikanth sarjana'}
+            }
+            return State;
+        }
+
+        function render(){
+            const State=store.getState();
+            console.log(State)
+            document.getElementById("abc").innerHTML=State.employee;
+        }
+        render();
+
+        store.subscribe(render);
+
+        function azzu(){
+            store.dispatch(emp1());
+        }
+
+        function chary(){
+            store.dispatch(emp2());
+        }
+
+        function sri(){
+            store.dispatch(emp3());
+        }
+        console.log(store);
+      
+      </script>
+</body>
+</html>
